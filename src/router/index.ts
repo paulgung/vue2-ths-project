@@ -22,6 +22,11 @@ const router = new VueRouter({
       name: "kuaixun",
       component: () => import("../views/KuaiXun.vue"),
     },
+    {
+      path: "/motanrobot",
+      name: "motanrobot",
+      component: () => import("../views/MotanRobot.vue"),
+    },
   ],
 });
 

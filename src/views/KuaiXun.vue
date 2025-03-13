@@ -44,6 +44,7 @@ const JGY_TO_RENDER_SDKDICTIONARY = {
 };
 
 export default {
+  name: "KuaiXun",
   data() {
     return {
       components: [], // 存储组件数据的数组
