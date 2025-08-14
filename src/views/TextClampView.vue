@@ -1,28 +1,39 @@
 <template>
   <div class="text-clamp-demo">
     <h1>TextClamp 组件使用示例</h1>
-    
+
+    <!-- 事件列表样式 -->
+    <section class="demo-section">
+      <h2>事件列表样式（您提供的示例）</h2>
+      <div class="demo-item">
+        <h3>带箭头的文本截断</h3>
+        <div class="event-list">
+          <div v-for="(item, index) in eventList" :key="index" class="event-item">
+            <TextClamp
+              :content="item.title"
+              :rows="2"
+              :single="true"
+              line-height="20px"
+              font-size="14px"
+              :custom-icon="arrowIcon"
+              :show-action="false"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- 基础用法 -->
     <section class="demo-section">
       <h2>基础用法</h2>
       <div class="demo-item">
         <h3>默认配置（5行，展开/收起）</h3>
-        <TextClamp
-          :content="longText"
-          :rows="5"
-          :expand-text="'展开'"
-          :collapse-text="'收起'"
-        />
+        <TextClamp :content="longText" :rows="5" :expand-text="'展开'" :collapse-text="'收起'" />
       </div>
-      
+
       <div class="demo-item">
         <h3>自定义行数（3行）</h3>
-        <TextClamp
-          :content="longText"
-          :rows="3"
-          :expand-text="'查看更多'"
-          :collapse-text="'收起'"
-        />
+        <TextClamp :content="longText" :rows="3" :expand-text="'查看更多'" :collapse-text="'收起'" />
       </div>
     </section>
 
@@ -40,74 +51,28 @@
           :collapse-text="'收起'"
         />
       </div>
-      
+
       <div class="demo-item">
         <h3>自定义省略符号</h3>
-        <TextClamp
-          :content="longText"
-          :rows="3"
-          :dot="'...'"
-          :expand-text="'展开'"
-          :collapse-text="'收起'"
-        />
+        <TextClamp :content="longText" :rows="3" :dot="'...'" :expand-text="'展开'" :collapse-text="'收起'" />
       </div>
     </section>
-
-    <!-- 事件列表样式 -->
-    <section class="demo-section">
-      <h2>事件列表样式（您提供的示例）</h2>
-      <div class="demo-item">
-        <h3>带箭头的文本截断</h3>
-        <div class="event-list">
-          <div 
-            v-for="(item, index) in eventList" 
-            :key="index" 
-            class="event-item"
-          >
-            <TextClamp
-              :content="item.title"
-              :rows="2"
-              :single="true"
-              line-height="20px"
-              font-size="14px"
-              :custom-icon="arrowIcon"
-              :show-action="false"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- 高级用法 -->
     <section class="demo-section">
       <h2>高级用法</h2>
       <div class="demo-item">
         <h3>默认展开状态</h3>
-        <TextClamp
-          :content="longText"
-          :rows="3"
-          :default-expand="true"
-          :expand-text="'展开'"
-          :collapse-text="'收起'"
-        />
+        <TextClamp :content="longText" :rows="3" :default-expand="true" :expand-text="'展开'" :collapse-text="'收起'" />
       </div>
-      
+
       <div class="demo-item">
         <h3>隐藏展开按钮</h3>
-        <TextClamp
-          :content="longText"
-          :rows="3"
-          :show-action="false"
-        />
+        <TextClamp :content="longText" :rows="3" :show-action="false" />
       </div>
-      
+
       <div class="demo-item">
         <h3>监听展开状态变化</h3>
-        <TextClamp
-          :content="longText"
-          :rows="3"
-          @expand="onExpandChange"
-        />
+        <TextClamp :content="longText" :rows="3" @expand="onExpandChange" />
         <p class="status-text">当前状态: {{ expandStatus ? '已展开' : '已收起' }}</p>
       </div>
     </section>
@@ -117,34 +82,24 @@
       <h2>不同内容长度测试</h2>
       <div class="demo-item">
         <h3>短文本（不需要截断）</h3>
-        <TextClamp
-          :content="shortText"
-          :rows="3"
-          :expand-text="'展开'"
-          :collapse-text="'收起'"
-        />
+        <TextClamp :content="shortText" :rows="3" :expand-text="'展开'" :collapse-text="'收起'" />
       </div>
-      
+
       <div class="demo-item">
         <h3>中等长度文本</h3>
-        <TextClamp
-          :content="mediumText"
-          :rows="2"
-          :expand-text="'展开'"
-          :collapse-text="'收起'"
-        />
+        <TextClamp :content="mediumText" :rows="2" :expand-text="'展开'" :collapse-text="'收起'" />
       </div>
     </section>
   </div>
 </template>
 
 <script>
-import TextClamp from '@/components/TextClamp.vue'
+import TextClamp from '@/components/TextClamp.vue';
 
 export default {
   name: 'TextClampView',
   components: {
-    TextClamp
+    TextClamp,
   },
   data() {
     return {
@@ -154,21 +109,22 @@ export default {
       mediumText: '这是一段中等长度的文本，可能会根据行数设置进行截断。这段文本包含了足够的内容来测试组件的截断功能。',
       eventList: [
         {
-          title: '重要公告：公司将于下周一进行系统维护，预计维护时间为2小时，期间可能影响部分功能使用，请提前做好准备。',
-          hasDetail: true
+          title:
+            '重要公告：公司将于下周一进行系统维护，预计维护时间为2小时，期间可能影响部分功能使用，请提前做好准备。',
+          hasDetail: true,
         },
         {
           title: '新产品发布：我们很高兴地宣布，全新的移动端应用已经正式上线，为用户提供更好的使用体验。',
-          hasDetail: true
+          hasDetail: true,
         },
         {
           title: '技术分享会：本周五下午2点将举办技术分享会，主题为"前端性能优化实践"，欢迎各位同事参加。',
-          hasDetail: true
+          hasDetail: true,
         },
         {
           title: '团队建设活动：为了增强团队凝聚力，我们计划在下个月组织一次户外团建活动，具体时间和地点将另行通知。',
-          hasDetail: true
-        }
+          hasDetail: true,
+        },
       ],
       arrowIcon: `<svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -177,16 +133,16 @@ export default {
           d="M1.33789 0.661438L0.630784 1.36854L4.26178 4.99954L0.630784 8.63053L1.33789 9.33764L5.67599 4.99954L1.33789 0.661438Z"
           fill="currentColor"
         />
-      </svg>`
-    }
+      </svg>`,
+    };
   },
   methods: {
     onExpandChange(isExpand) {
-      this.expandStatus = isExpand
-      console.log('展开状态变化:', isExpand)
-    }
-  }
-}
+      this.expandStatus = isExpand;
+      console.log('展开状态变化:', isExpand);
+    },
+  },
+};
 </script>
 
 <style lang="less" scoped>
@@ -252,12 +208,12 @@ h1 {
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s ease;
-    
+
     &:hover {
       border-color: #1890ff;
       box-shadow: 0 2px 8px rgba(24, 144, 255, 0.2);
     }
-    
+
     &:last-child {
       margin-bottom: 0;
     }
@@ -269,15 +225,15 @@ h1 {
   .text-clamp-demo {
     padding: 15px;
   }
-  
+
   .demo-section {
     padding: 15px;
   }
-  
+
   h1 {
     font-size: 24px;
   }
-  
+
   .demo-section h2 {
     font-size: 18px;
   }
