@@ -13,6 +13,7 @@
 <script lang="ts">
 import loadScript from 'load-script'
 import { defineComponent } from 'vue'
+import Vue from 'vue'
 
 type ObjType = Record<string, any>
 
@@ -67,13 +68,15 @@ export default defineComponent({
       const comId = `Robot_${id}`.replace(/[_|\@]/g, '')
 
       // 加载js
-      loadScript(dataComurl, (err) => {
-        if (err) {
-          return
-        }
-        Vue.component(comId, (window as any)[id].default)
-        this.comId = comId
-      })
+      if (dataComurl) {
+        loadScript(dataComurl, (err) => {
+          if (err) {
+            return
+          }
+          Vue.component(comId, (window as any)[id].default)
+          this.comId = comId
+        })
+      }
     },
 
     // 龙虎榜特殊处理，判断有龙虎榜的组件，就去掉iframe
