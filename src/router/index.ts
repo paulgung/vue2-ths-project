@@ -32,6 +32,11 @@ const router = new VueRouter({
       name: "disclaimer",
       component: () => import("../views/DisclaimerView.vue"),
     },
+    {
+      path: "/textclamp",
+      name: "textclamp",
+      component: () => import("../views/TextClampView.vue"),
+    },
   ],
 });
 
